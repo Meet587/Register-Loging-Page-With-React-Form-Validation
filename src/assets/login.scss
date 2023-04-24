@@ -1,0 +1,30 @@
+.login_link {
+    display: inline;
+}
+
+.form{
+    color:#404040;
+    margin: 3rem;
+
+    Input{
+        max-width: 30rem;
+    }
+}
+.register_page {
+    margin-left: 4rem;
+    margin-right: 3.58rem;
+    color: #707070;
+  }
+.register_link{
+    text-decoration: none;
+    color: #4B9CD3;
+  }
+
+.login_btn{
+    width: 18vw;
+    color: #404040;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
