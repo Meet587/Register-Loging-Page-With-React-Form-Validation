@@ -80,8 +80,6 @@ const Login = () => {
 
     if (isvalid) {
       LoginSucces();
-    } else {
-      console.log("no");
     }
   };
 

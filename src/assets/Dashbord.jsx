@@ -18,13 +18,12 @@ const Dashbord = () => {
   const registerData = JSON.parse(localStorage.getItem("Form_data"));
 
   const user = registerData.find((e) => {
-    console.log(e.email);
     return e.email === location.state.email;
   });
   // console.log(user)
 
   const logOutFun = () => {
-    navigate("login")
+    navigate("/")
   }
 
   return (

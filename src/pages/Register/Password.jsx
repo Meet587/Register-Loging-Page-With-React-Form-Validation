@@ -1,12 +1,11 @@
 import React from "react";
-import { Form, FormGroup, Input, Label } from "reactstrap";
+import { FormGroup, Input, Label } from "reactstrap";
 import style from "../Register/register.module.scss";
 
 const Password = (props) => {
-  const { reData, validation, handleChange } = props;
+  const { reData, validation, handleChange, handleSubmit } = props;
   return (
     <>
-      <Form action="" className="" onSubmit={(e) => onLogin(e)}>
         <div className="email fild">
           <FormGroup floating>
             <Input
@@ -22,7 +21,9 @@ const Password = (props) => {
             <Label htmlFor="pass" className={style.reg_label}>
               Enter Password
             </Label>
-            {validation.pass && <p>{validation.pass}</p>}
+            {validation.pass && (
+              <p className={style.error}>{validation.pass}</p>
+            )}
             {validation.pass && console.log(validation)}
           </FormGroup>
         </div>
@@ -42,10 +43,11 @@ const Password = (props) => {
             <Label htmlFor="cPass" className={style.reg_label}>
               Confirm Password
             </Label>
-            {validation.cPass && <p>{validation.cPass}</p>}
+            {validation.cPass && (
+              <p className={style.error}>{validation.cPass}</p>
+            )}
           </FormGroup>
         </div>
-      </Form>
     </>
   );
 };

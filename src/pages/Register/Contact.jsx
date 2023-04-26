@@ -3,10 +3,10 @@ import { Form, FormGroup, Input, Label } from "reactstrap";
 import style from "../Register/register.module.scss";
 
 const Contact = (props) => {
-  const { reData, validation, handleChange } = props;
+  const { reData, validation, handleChange, handleSubmit } = props;
   return (
     <>
-      <Form action="" className="" onSubmit={(e) => onLogin(e)}>
+      <>
         <div className="email fild">
           <FormGroup floating>
             <Input
@@ -21,7 +21,9 @@ const Contact = (props) => {
             <Label htmlFor="email" className={style.reg_label}>
               Email
             </Label>
-            {validation.email && <p>{validation.email}</p>}
+            {validation.email && (
+              <p className={style.error}>{validation.email}</p>
+            )}
           </FormGroup>
         </div>
         <div className="lName fild">
@@ -37,14 +39,15 @@ const Contact = (props) => {
               value={reData.cNum}
               onChange={(e) => handleChange(e)}
             />
-            {validation.cNum && <p>{validation.cNum}</p>}
+            {validation.cNum && (
+              <p className={style.error}>{validation.cNum}</p>
+            )}
             <Label htmlFor="cNum" className={style.reg_label}>
               Contact No
             </Label>
-            {validation.lName && <p>{validation.lName}</p>}
           </FormGroup>
         </div>
-      </Form>
+      </>
     </>
   );
 };

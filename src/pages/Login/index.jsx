@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import style from "../Login/login.module.scss";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const index = (props) => {
   const navigate = useNavigate();
+
   const [loginData, setLoginData] = useState({
     email: "",
     pass: "",
@@ -16,6 +18,7 @@ const index = (props) => {
     isExist: "",
   });
   const registerData = JSON.parse(localStorage.getItem("Form_data"));
+   console.log(registerData)
 
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
@@ -36,6 +39,7 @@ const index = (props) => {
     let user = registerData.find((e) => {
       return e.email === loginData.email && e.pass === loginData.pass;
     });
+    console.log(user)
 
     if (!loginData.email.trim()) {
       isvalid = false;
@@ -46,7 +50,7 @@ const index = (props) => {
 
     if (!loginData.pass.trim()) {
       isvalid = false;
-      errors.pass = "PassWord is required";
+      errors.pass = "Password is required";
     } else {
       errors.pass = "";
 
@@ -68,8 +72,6 @@ const index = (props) => {
 
     if (isvalid) {
       LoginSucces();
-    } else {
-      console.log("no");
     }
   };
   return (
@@ -97,7 +99,9 @@ const index = (props) => {
               <Label htmlFor="email" className={style.login_label}>
                 Email
               </Label>
-              {validation.email && <p>{validation.email}</p>}
+              {validation.email && (
+                <p className={style.error}>{validation.email}</p>
+              )}
               {validation.email && console.log(validation)}
             </FormGroup>
           </div>
@@ -117,7 +121,9 @@ const index = (props) => {
               <Label htmlFor="pass" className={style.login_label}>
                 Password
               </Label>
-              {validation.pass && <p>{validation.pass}</p>}
+              {validation.pass && (
+                <p className={style.error}>{validation.pass}</p>
+              )}
             </FormGroup>
           </div>
           <div className={style.pass_recover}>Recovery Password</div>
@@ -131,7 +137,7 @@ const index = (props) => {
           <p className="register_page">
             Don't have an account?
             <Link to="register" className={style.register_link}>
-              <div > Register now</div>
+              <span> Register now</span>
             </Link>
           </p>
         </div>
