@@ -139,7 +139,7 @@ const Register = () => {
 
   return (
     <React.Fragment>
-      <Container>
+      <Container className="reg_container">
         <div className="container1">
           <div className="heading">
             <h3>Registration Form</h3>

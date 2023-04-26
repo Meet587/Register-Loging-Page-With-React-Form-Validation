@@ -1,78 +1,50 @@
 import React from "react";
-import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { useLocation, useNavigate } from "react-router";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardText,
+  CardTitle,
+} from "reactstrap";
 
 const Dashbord = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location.state.email)
+
+  const registerData = JSON.parse(localStorage.getItem("Form_data"));
+
+  const user = registerData.find((e) => {
+    console.log(e.email);
+    return e.email === location.state.email;
+  });
+  // console.log(user)
+
+  const logOutFun = () => {
+    navigate("login")
+  }
+
   return (
     <div>
-      <Form>
-        <Row>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="exampleEmail">Email</Label>
-              <Input
-                id="exampleEmail"
-                name="email"
-                placeholder="with a placeholder"
-                type="email"
-              />
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="examplePassword">Password</Label>
-              <Input
-                id="examplePassword"
-                name="password"
-                placeholder="password placeholder"
-                type="password"
-              />
-            </FormGroup>
-          </Col>
-        </Row>
-        <FormGroup>
-          <Label for="exampleAddress">Address</Label>
-          <Input
-            id="exampleAddress"
-            name="address"
-            placeholder="1234 Main St"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleAddress2">Address 2</Label>
-          <Input
-            id="exampleAddress2"
-            name="address2"
-            placeholder="Apartment, studio, or floor"
-          />
-        </FormGroup>
-        <Row>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="exampleCity">City</Label>
-              <Input id="exampleCity" name="city" />
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="exampleState">State</Label>
-              <Input id="exampleState" name="state" />
-            </FormGroup>
-          </Col>
-          <Col md={2}>
-            <FormGroup>
-              <Label for="exampleZip">Zip</Label>
-              <Input id="exampleZip" name="zip" />
-            </FormGroup>
-          </Col>
-        </Row>
-        <FormGroup check>
-          <Input id="exampleCheck" name="check" type="checkbox" />
-          <Label check for="exampleCheck">
-            Check me out
-          </Label>
-        </FormGroup>
-        <Button>Sign in</Button>
-      </Form>
+      <Card
+        className="my-2"
+        style={{
+          width: "18rem",
+        }}
+      >
+        <CardHeader tag="h4">Welcom Mr. {user.fName}</CardHeader>
+        <CardBody>
+          <CardTitle tag="h5">Special thanks to Karanbhai</CardTitle>
+          <CardText className="card_txt">
+            Now you can visite site peacfully or click to logout
+          </CardText>
+          <Button onClick={logOutFun}>Log Out</Button>
+        </CardBody>
+        {/* <CardFooter>Footer</CardFooter> */}
+      </Card>
     </div>
   );
 };

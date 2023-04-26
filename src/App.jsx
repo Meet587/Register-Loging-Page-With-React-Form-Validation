@@ -2,11 +2,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
 
-import Login from "./assets/Login";
-import Register from "./assets/Register";
-import Dashbord from "./assets/Dashbord";
+// import Login from "./assets/Login";
+// import Register from "./assets/Register";
+// import Dashbord from "./assets/Dashbord";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Index from "./pages/Login/index";
+import Register from "./pages/Register/Register";
 
 function App() {
   return (
@@ -14,10 +16,8 @@ function App() {
       <ToastContainer />
       <Router>
         <Routes>
-          <Route path="/*" element={<Login />}></Route>
-
+          <Route path="/*" element={<Index />}></Route>
           <Route path="register" element={<Register />}></Route>
-          <Route path="dashbord" element={<Dashbord />}></Route>
         </Routes>
       </Router>
     </React.Fragment>
@@ -25,3 +25,9 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <Route path="/*" element={<Login />}></Route>
+<Route path="register" element={<Register />}></Route>
+<Route path="dashbord" element={<Dashbord />}></Route> */
+}

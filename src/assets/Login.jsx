@@ -6,14 +6,17 @@ import {
   Label,
   FormGroup,
   Input,
-  ToastHeader,
-  ToastBody,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
 } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "./login.scss";
 
 const Login = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -25,14 +28,16 @@ const Login = () => {
     isExist: "",
   });
   const registerData = JSON.parse(localStorage.getItem("Form_data"));
-  console.log(registerData);
 
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
     setLoginData((prev) => {
       return { ...prev, [name]: value };
     });
-    console.log(loginData);
+  };
+
+  const LoginSucces = () => {
+    navigate("dashbord", { state: { ...loginData } });
   };
 
   const onLogin = (e) => {
@@ -43,50 +48,55 @@ const Login = () => {
     let user = registerData.find((e) => {
       return e.email === loginData.email && e.pass === loginData.pass;
     });
-    console.log(user);
 
-    if (user === undefined) {
-      errors.isExist = "User Not Found";
-      toast.error("User Not Found");
+    if (!loginData.email.trim()) {
+      isvalid = false;
+      errors.email = "Email is required";
     } else {
-      if (!loginData.email.trim()) {
-        isvalid = false;
-        errors.email = "Email is required";
-      } else if (user?.email !== loginData.email) {
-        isvalid = false;
-        errors.email = "Email is not Found";
-      }
+      errors.email = "";
+    }
 
-      if (!loginData.pass.trim()) {
-        isvalid = false;
-        errors.pass = "PassWord is required";
-      } else if (user?.pass !== loginData.pass) {
-        isvalid = false;
-        errors.pass = "Wrong Password";
+    if (!loginData.pass.trim()) {
+      isvalid = false;
+      errors.pass = "PassWord is required";
+    } else {
+      errors.pass = "";
+
+      if (user === undefined) {
+        errors.isExist = "User Not Found";
+        toast.error("User Not Found");
+      } else {
+        if (user?.email !== loginData.email) {
+          isvalid = false;
+          errors.email = "Email is not Found";
+        }
+        if (user?.pass !== loginData.pass) {
+          isvalid = false;
+          errors.pass = "Wrong Password";
+        }
       }
     }
     setValidation({ ...errors });
 
-    // if (isvalid) {
-    //   LoginSucces();
-    // } else {
-    //   console.log("no");
-    // }
-  };
-  const LoginSucces = () => {
-    navigate("dashbord", { state: {} });
+    if (isvalid) {
+      LoginSucces();
+    } else {
+      console.log("no");
+    }
   };
 
   return (
     <React.Fragment>
-      
-      <Container>
-        <div className="container1">
-          <div>
+      <Container className="login_container">
+        <Card className="login_cadr">
+          <CardBody>
+            <CardTitle tag="h5">Hello Again!</CardTitle>
+            <CardSubtitle className="mb-2 text-muted" tag="h6">
+              Welcome back you'vebeen missed!
+            </CardSubtitle>
             <Form action="" className="form" onSubmit={(e) => onLogin(e)}>
               <div className="email fild">
-                <FormGroup>
-                  <Label htmlFor="email">Email</Label>
+                <FormGroup floating>
                   <Input
                     type="email"
                     id="email"
@@ -97,14 +107,14 @@ const Login = () => {
                     value={loginData.email}
                     onChange={(e) => handleChangeLogin(e)}
                   />
+                  <Label htmlFor="email">Email</Label>
                   {validation.email && <p>{validation.email}</p>}
                   {validation.email && console.log(validation)}
                 </FormGroup>
               </div>
 
               <div className="pass fild">
-                <FormGroup>
-                  <Label htmlFor="pass">Password</Label>
+                <FormGroup floating>
                   <Input
                     type="password"
                     min="8"
@@ -116,6 +126,7 @@ const Login = () => {
                     value={loginData.pass}
                     onChange={(e) => handleChangeLogin(e)}
                   />
+                  <Label htmlFor="pass">Password</Label>
                   {validation.pass && <p>{validation.pass}</p>}
                 </FormGroup>
               </div>
@@ -129,12 +140,13 @@ const Login = () => {
               <p className="register_page">
                 Don't have an account ?
                 <Link to="register" className="register_link">
-                  Signup now
+                  <span>Signup now</span>
                 </Link>
               </p>
             </div>
-          </div>
-        </div>
+
+          </CardBody>
+        </Card>
       </Container>
     </React.Fragment>
   );
