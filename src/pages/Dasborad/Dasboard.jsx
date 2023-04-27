@@ -13,7 +13,6 @@ import {
 const Dashbord = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(location.state.email)
 
   const registerData = JSON.parse(localStorage.getItem("Form_data"));
 
@@ -23,7 +22,7 @@ const Dashbord = () => {
   // console.log(user)
 
   const logOutFun = () => {
-    navigate("/");
+    navigate("/Todo-page");
   };
 
   return (

@@ -4,6 +4,7 @@ import style from "../Register/register.module.scss";
 
 const Name = (props) => {
   const { validation, reData, handleChange, handleSubmit } = props;
+  // console.log(validation);
   return (
     <>
       <div className="email fild">

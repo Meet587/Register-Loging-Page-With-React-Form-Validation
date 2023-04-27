@@ -18,7 +18,6 @@ const index = (props) => {
     isExist: "",
   });
   const registerData = JSON.parse(localStorage.getItem("Form_data"));
-   console.log(registerData)
 
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
@@ -33,46 +32,46 @@ const index = (props) => {
 
   const onLogin = (e) => {
     e.preventDefault();
-    let isvalid = true;
-    let errors = validation;
+    // let isvalid = true;
+    // let errors = validation;
 
-    let user = registerData.find((e) => {
-      return e.email === loginData.email && e.pass === loginData.pass;
-    });
-    console.log(user)
+    // let user = registerData.find((e) => {
+    //   return e.email === loginData.email && e.pass === loginData.pass;
+    // });
+    // console.log(user)
 
-    if (!loginData.email.trim()) {
-      isvalid = false;
-      errors.email = "Email is required";
-    } else {
-      errors.email = "";
-    }
+    // if (!loginData.email.trim()) {
+    //   isvalid = false;
+    //   errors.email = "Email is required";
+    // } else {
+    //   errors.email = "";
+    // }
 
-    if (!loginData.pass.trim()) {
-      isvalid = false;
-      errors.pass = "Password is required";
-    } else {
-      errors.pass = "";
+    // if (!loginData.pass.trim()) {
+    //   isvalid = false;
+    //   errors.pass = "Password is required";
+    // } else {
+    //   errors.pass = "";
 
-      if (user === undefined) {
-        errors.isExist = "User Not Found";
-        toast.error("User Not Found");
-      } else {
-        if (user?.email !== loginData.email) {
-          isvalid = false;
-          errors.email = "Email is not Found";
-        }
-        if (user?.pass !== loginData.pass) {
-          isvalid = false;
-          errors.pass = "Wrong Password";
-        }
-      }
-    }
-    setValidation({ ...errors });
+    //   if (user === undefined) {
+    //     errors.isExist = "User Not Found";
+    //     toast.error("User Not Found");
+    //   } else {
+    //     if (user?.email !== loginData.email) {
+    //       isvalid = false;
+    //       errors.email = "Email is not Found";
+    //     }
+    //     if (user?.pass !== loginData.pass) {
+    //       isvalid = false;
+    //       errors.pass = "Wrong Password";
+    //     }
+    //   }
+    // }
+    // setValidation({ ...errors });
 
-    if (isvalid) {
-      LoginSucces();
-    }
+    // if (isvalid) {
+    // }
+    LoginSucces();
   };
   return (
     <div className={style.main_container}>
@@ -83,7 +82,7 @@ const index = (props) => {
             Wellcome back you've been missed!
           </h6>
         </div>
-        <Form action="" className="" onSubmit={(e) => onLogin(e)}>
+        <Form action="" className="" onSubmit={(e) => onLogin(e)}> 
           <div className="email fild">
             <FormGroup floating>
               <Input

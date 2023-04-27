@@ -4,12 +4,14 @@ import React from "react";
 
 // import Login from "./assets/Login";
 // import Register from "./assets/Register";
-import Dashbord from "./assets/Dashbord";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Index from "./pages/Login/index";
 import Register from "./pages/Register/Register";
 import R404 from "./pages/404";
+import Todo from "./pages/Todo List/Todo";
+import Dashbord from "./pages/Dasborad/Dasboard";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <Route path="/" element={<Index />}></Route>
           <Route path="register" element={<Register />}></Route>
           <Route path="dashbord" element={<Dashbord />}></Route>
+          <Route path="Todo-page" element={<Todo />}></Route>
           <Route path="*" element={<R404 />}></Route>
 
         </Routes>

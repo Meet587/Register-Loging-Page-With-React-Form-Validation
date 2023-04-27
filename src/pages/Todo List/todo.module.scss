@@ -1,0 +1,89 @@
+.main_container {
+    padding: 2rem;
+    border: 1px solid black;
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    background-color: rgb(179, 255, 230);
+}
+.container{
+    margin-top: 2rem;
+}
+.form_container {
+    margin-left: 1rem;
+    width: 90%;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 0;
+    border-radius: 10px;
+}
+.form_label {
+    font-size: 15px;
+    font-weight: 500;
+    display: block;
+}
+.input {
+    background: rgb(249, 255, 253);
+    border: 0;
+    border-radius: 15px;
+    // width: 85%;
+}
+.input:focus {
+    color: rgb(125, 126, 125);
+    font-weight: 500;
+    background: rgb(172, 199, 190);
+    box-shadow: none;
+}
+.form_btn_container {
+    display: flex;
+    justify-content: end;
+}
+
+//list styling
+
+.list_container{
+    // padding: 1rem;
+    // background-color: red;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 0;
+    border-radius: 10px;
+    max-height: 80vh;
+    overflow-y: scroll;
+    .card_component {
+        margin: 0.5rem;
+    }
+    .card_1{
+        padding: 0;
+        border: 0;
+        border-radius: 10px;
+    }
+}
+
+.list_heading {
+    display: flex;
+    justify-content: space-between;
+    .dt_container {
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .list_title {
+        width: 74%;
+    }
+}
+
+.dis_container {
+    display: flex;
+    justify-content: space-between;
+    .btn_delete_conatiner {
+        display: flex;
+        justify-content: space-between;   
+    }
+    .btn_delete {
+        padding: 0;
+        font-size: 25px;
+    }
+}
+
+
