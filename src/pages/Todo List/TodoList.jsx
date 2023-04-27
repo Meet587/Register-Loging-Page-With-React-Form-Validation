@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, CardBody, CardSubtitle, CardText, Button } from "reactstrap";
 import { MdDeleteOutline } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
-const TodoList = ({ list, style, handleDelete }) => {
+const TodoList = ({ list, style, handleDelete, handleEdit }) => {
   const cardOne = () => {
     return (
       <div className={style.list_container}>
@@ -25,8 +26,18 @@ const TodoList = ({ list, style, handleDelete }) => {
                     <span className={`${style.dis}`}>{prev.dis}</span>
                     <span className={`${style.btn_delete_conatiner}`}>
                       <Button
+                        className={`${style.edit_btn}`}
+                        onClick={(e) => handleEdit(e, i)}
+                        color="info"
+                        outline
+                      >
+                        <FaEdit />
+                      </Button>
+                      <Button
                         className={`${style.btn_delete}`}
                         onClick={(e) => handleDelete(e, i)}
+                        color="danger"
+                        outline
                       >
                         <MdDeleteOutline />
                       </Button>

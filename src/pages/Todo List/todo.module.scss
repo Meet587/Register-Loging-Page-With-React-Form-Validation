@@ -8,6 +8,47 @@
 .container{
     margin-top: 2rem;
 }
+// ------------- Header CSS -------------
+.header {
+    // position: relative;
+    padding: 15px;
+    background-color: transparent;
+   
+    .input_form {
+        .search_input{
+            max-width: 31vw;
+            min-width: fit-content;
+            font-size: 1.2rem;
+            font-weight: 500;
+            background-color: #f9fffd;
+            height: auto;
+            max-height: 35px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: none;
+            border-radius: 30px;
+            box-shadow: none;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+        .search_input:focus {
+            
+            color: rgb(65, 65, 65);
+            font-weight: 500;
+            background: rgb(172, 199, 190);
+            box-shadow: none;
+        }
+        // .search_label{
+        //     // display: flex;
+        //     // align-items: center;
+        //     position: absolute;
+        //     z-index: 10;
+        //     font-size: 16px;
+        //     left: 395px;
+        //     top: 7px;
+        // }
+    }
+}
+   
 .form_container {
     margin-left: 1rem;
     width: 90%;
@@ -63,7 +104,7 @@
     display: flex;
     justify-content: space-between;
     .dt_container {
-        width: 25%;
+        min-width: 130px;
         display: flex;
         justify-content: space-between;
     }
@@ -80,8 +121,19 @@
         justify-content: space-between;   
     }
     .btn_delete {
+        margin-left: 2px;
         padding: 0;
         font-size: 25px;
+        // background-color: #905043;
+        // border: 0;
+        color: red;
+    }
+    .edit_btn{
+        padding: 2px;
+        font-size: 25px;
+        // background-color: #5ae368;
+        // border: 0;
+        color: #dedede;
     }
 }
 
