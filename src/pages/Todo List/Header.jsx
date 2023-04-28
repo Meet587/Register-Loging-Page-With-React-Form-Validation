@@ -2,11 +2,10 @@ import React from "react";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 import { FiSearch } from "react-icons/fi";
 
-
-const Header = ({style, onSearch}) => {
+const Header = ({ style, onSearch, search, setSearch }) => {
   return (
     <div className={style.header}>
-      <Form >
+      <>
         <div className={`${style.input_form} `}>
           <Input
             id="exampleSearch"
@@ -14,11 +13,15 @@ const Header = ({style, onSearch}) => {
             placeholder="search..."
             type="search"
             className={style.search_input}
-            // onChange={e => onSearch(e)}
+            value={search}
+            onChange={(e) => onSearch(e) }
+            autoComplete="off"
           />
-          {/* <Label for="exampleSearch" className={style.search_label}><FiSearch /></Label> */}
+          <Label for="exampleSearch" className={style.search_label}>
+            <FiSearch />
+          </Label>
         </div>
-      </Form>
+      </>
     </div>
   );
 };

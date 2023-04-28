@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
 
-const TodoForm = ({ formData, handleSubmit, handleChange, style }) => {
+const TodoForm = ({
+  formData,
+  handleSubmit,
+  handleChange,
+  style,
+  currentDate,
+  currentTime,
+}) => {
   return (
     <div className={style.form_container}>
       <Form onSubmit={(e) => handleSubmit(e)}>
@@ -22,7 +29,7 @@ const TodoForm = ({ formData, handleSubmit, handleChange, style }) => {
           />
         </FormGroup>
 
-        <FormGroup>
+        {/* <FormGroup>
           <Label htmlFor="dis" className={style.form_label}>
             Discription
           </Label>
@@ -37,7 +44,7 @@ const TodoForm = ({ formData, handleSubmit, handleChange, style }) => {
             value={formData.dis}
             onChange={(e) => handleChange(e)}
           />
-        </FormGroup>
+        </FormGroup> */}
         <Row>
           <Col>
             <FormGroup>
@@ -46,13 +53,13 @@ const TodoForm = ({ formData, handleSubmit, handleChange, style }) => {
               </Label>
 
               <Input
-                type="date"
+                type="text"
                 id="date"
                 name="date"
                 className={style.date}
                 autoComplete="false"
-                value={formData.date}
-                onChange={(e) => handleChange(e)}
+                value={currentDate}
+                readOnly
               />
             </FormGroup>
           </Col>
@@ -63,12 +70,13 @@ const TodoForm = ({ formData, handleSubmit, handleChange, style }) => {
               </Label>
 
               <Input
-                type="time"
+                type="text"
                 id="time"
                 name="time"
+                readOnly
                 className={style.time}
                 autoComplete="false"
-                value={formData.time}
+                value={currentTime}
                 onChange={(e) => handleChange(e)}
               />
             </FormGroup>
