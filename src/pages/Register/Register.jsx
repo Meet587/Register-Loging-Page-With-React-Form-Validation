@@ -28,7 +28,10 @@ const index = () => {
   const [userData, setUserData] = useState([]);
 
   const [stap, setStap] = useState(0);
-
+  useEffect(() => {
+    let userData = localStorage.getItem("Form_data");
+    setUserData(JSON.parse(userData));
+  }, []);
   const submit = () => {
     navigate("/", { state: { ...reData } });
   };
@@ -46,7 +49,7 @@ const index = () => {
 
   function validationFun() {
     let isvalid = true;
-    let errors = {...validation};
+    let errors = { ...validation };
     if (stap === 0) {
       //first Name validation
       if (!reData.fName.trim()) {
@@ -138,12 +141,13 @@ const index = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    let temUserData = [...userData];
+    let newUserData = [...userData];
+    // let temUserData = [...userData];
     let tempObj = { ...reData };
     if (stap === 2) {
-      temUserData.push(tempObj);
-      setUserData(temUserData);
-      localStorage.setItem("Form_data", JSON.stringify(temUserData));
+      newUserData.push(tempObj);
+      setUserData(newUserData);
+      localStorage.setItem("Form_data", JSON.stringify(newUserData));
     }
 
     if (validationFun()) {

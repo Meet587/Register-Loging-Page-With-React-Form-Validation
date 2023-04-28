@@ -25,7 +25,6 @@ const Name = (props) => {
           {validation.fName && (
             <p className={`${style.error} text-danger`}>{validation.fName}</p>
           )}
-          {validation.fName && console.log(validation)}
         </FormGroup>
       </div>
       <div className="lName fild">
