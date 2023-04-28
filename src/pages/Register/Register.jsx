@@ -44,9 +44,9 @@ const index = () => {
     setReData({ ...temObj, reData });
   }
 
-  const validationFun = () => {
+  function validationFun() {
     let isvalid = true;
-    let errors = validation;
+    let errors = {...validation};
     if (stap === 0) {
       //first Name validation
       if (!reData.fName.trim()) {
@@ -129,9 +129,12 @@ const index = () => {
       }
     }
 
+    //  (()=>setValidation( prev =>{
+    //    return ({...prev, ...errors})
+    // }))()
     setValidation(errors);
     return isvalid;
-  };
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
