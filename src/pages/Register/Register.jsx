@@ -29,8 +29,8 @@ const index = () => {
 
   const [stap, setStap] = useState(0);
   useEffect(() => {
-    let userData = localStorage.getItem("Form_data");
-    setUserData(JSON.parse(userData));
+    let newUserData = localStorage.getItem("Form_data");
+    setUserData(newUserData? JSON.parse(newUserData): []);
   }, []);
   const submit = () => {
     navigate("/", { state: { ...reData } });
@@ -142,7 +142,6 @@ const index = () => {
   function handleSubmit(e) {
     e.preventDefault();
     let newUserData = [...userData];
-    // let temUserData = [...userData];
     let tempObj = { ...reData };
     if (stap === 2) {
       newUserData.push(tempObj);
