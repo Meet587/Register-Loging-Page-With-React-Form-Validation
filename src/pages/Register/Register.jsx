@@ -3,7 +3,7 @@ import style from "../Register/register.module.scss";
 import Name from "./Name";
 import { useNavigate } from "react-router";
 import { Button, Form } from "reactstrap";
-import Card from "../stlecomponent/card";
+import Card from "../stylecomponent/card";
 import Contact from "./Contact";
 import Password from "./Password";
 
@@ -16,6 +16,7 @@ const index = () => {
     email: "",
     pass: "",
     cPass: "",
+    isLogin: false,
   });
   const [validation, setValidation] = useState({
     fName: "",
@@ -30,7 +31,7 @@ const index = () => {
   const [stap, setStap] = useState(0);
   useEffect(() => {
     let newUserData = localStorage.getItem("Form_data");
-    setUserData(newUserData? JSON.parse(newUserData): []);
+    setUserData(newUserData ? JSON.parse(newUserData) : []);
   }, []);
   const submit = () => {
     navigate("/", { state: { ...reData } });
@@ -50,8 +51,9 @@ const index = () => {
   function validationFun() {
     let isvalid = true;
     let errors = { ...validation };
+
+    //first Name validation
     if (stap === 0) {
-      //first Name validation
       if (!reData.fName.trim()) {
         isvalid = false;
         errors.fName = "First name is required";
@@ -67,8 +69,8 @@ const index = () => {
       }
     }
 
+    // email validation
     if (stap === 1) {
-      // email validation
       const emailCond =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/;
       if (!reData.email.trim()) {
@@ -93,15 +95,15 @@ const index = () => {
       }
     }
 
+    //password validation
     if (stap === 2) {
-      //password validation
       const cond1 = /^(?=.*[a-z]).{6,20}$/;
       const cond2 = /^(?=.*[A-Z]).{6,20}$/;
       const cond3 = /^(?=.*[0-9]).{6,20}$/;
       const password = reData.pass;
       if (!password) {
         isvalid = false;
-        errors.pass = "password is required";
+        errors.pass = "Password is required";
       } else if (password.length < 6) {
         isvalid = false;
         errors.pass = "Password must be longer than 6 characters";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import {
   Button,
@@ -13,18 +13,20 @@ import {
 const Dashbord = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const registerData = JSON.parse(localStorage.getItem("Form_data"));
-
-  const user = registerData.find((e) => {
-    return e.email === location.state.email;
-  });
-  // console.log(user)
+  let user = {};
+  useEffect(() => {
+    const registerData = JSON.parse(localStorage.getItem("Form_data"));
+    if (location.state !== null) {
+      user = registerData.find((e) => {
+        return e.email === location.state.email;
+      });
+    }
+  }, []);
 
   const logOutFun = () => {
     navigate("/Todo-page");
   };
-
+  console.log(user);
   return (
     <div>
       <Card
@@ -33,15 +35,23 @@ const Dashbord = () => {
           width: "18rem",
         }}
       >
-        <CardHeader tag="h4">Welcom Mr. Meet</CardHeader>
+        <CardHeader tag="h4">Welcom Mr. {user.fName}</CardHeader>
         <CardBody className="mb-5">
           <CardTitle tag="h5">Special thanks to Karanbhai</CardTitle>
           <CardText className="card_txt">
-            Now you can visite site and moke some stuff like A todo list 
+            Now you can visite site and moke some stuff like A todo list
           </CardText>
         </CardBody>
         <CardFooter>
           <Button onClick={logOutFun}>make list</Button>
+          <Button
+            onClick={(e) => {
+              localStorage.setItem("isAuth", false);
+              navigate("/login");
+            }}
+          >
+            Logout
+          </Button>
         </CardFooter>
       </Card>
     </div>

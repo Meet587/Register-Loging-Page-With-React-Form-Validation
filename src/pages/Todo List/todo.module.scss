@@ -12,6 +12,8 @@
 // ------------- Header CSS -------------
 .header {
     // position: relative;
+    // display: flex;
+    // justify-content: space-between;
     padding: 15px;
     background-color: transparent;
    
@@ -80,6 +82,12 @@
 .form_btn_container {
     display: flex;
     justify-content: end;
+}
+.error {
+    padding-left: 0.5rem;
+    font-weight: 500;
+    color: #dc3545!important;
+    margin-top: -12px;
 }
 
 //list styling

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../Login/login.module.scss";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
-const index = (props) => {
+const index = ({ isAuth, setIsAuth }) => {
   const navigate = useNavigate();
+  let user;
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -27,17 +28,22 @@ const index = (props) => {
   };
 
   const LoginSucces = () => {
-    navigate("dashbord", { state: { ...loginData } });
+    let newLoginData = { ...user };
+    newLoginData.isLogin = true;
+    setLoginData({ ...loginData, newLoginData });
+    setIsAuth(true);
+    localStorage.setItem("Login_data", JSON.stringify(newLoginData));
+    localStorage.setItem("isAuth", false);
+    navigate("/dashbord", { state: { ...loginData } });
   };
 
   const onLogin = (e) => {
     e.preventDefault();
     let isvalid = true;
-    let errors = {...validation};
-    let user = registerData.find((obj) => {
+    let errors = { ...validation };
+    user = registerData.find((obj) => {
       return obj.email == loginData.email && obj.pass == loginData.pass;
     });
-    console.log(user)
 
     if (!loginData.email.trim()) {
       isvalid = false;
@@ -73,6 +79,7 @@ const index = (props) => {
       LoginSucces();
     }
   };
+
   return (
     <div className={style.main_container}>
       <div className={style.login_cardbody}>
@@ -82,7 +89,7 @@ const index = (props) => {
             Wellcome back you've been missed!
           </h6>
         </div>
-        <Form action="" className="" onSubmit={(e) => onLogin(e)}> 
+        <Form action="" className="" onSubmit={(e) => onLogin(e)}>
           <div className="email fild">
             <FormGroup floating>
               <Input
@@ -101,7 +108,6 @@ const index = (props) => {
               {validation.email && (
                 <p className={style.error}>{validation.email}</p>
               )}
-              {validation.email && console.log(validation)}
             </FormGroup>
           </div>
           <div className="pass fild">

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router";
 import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
 
 const TodoForm = ({
@@ -8,6 +9,7 @@ const TodoForm = ({
   style,
   currentDate,
   currentTime,
+  error,
 }) => {
   return (
     <div className={style.form_container}>
@@ -28,6 +30,7 @@ const TodoForm = ({
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
+        {error && <p className={style.error}>*Enter ToDo Title</p>}
 
         {/* <FormGroup>
           <Label htmlFor="dis" className={style.form_label}>

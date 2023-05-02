@@ -4,6 +4,7 @@ import TodoList from "./TodoList";
 import { Col, Container, Row } from "reactstrap";
 import style from "./todo.module.scss";
 import Header from "./Header";
+import { useNavigate } from "react-router";
 
 const Todo = () => {
   const [renderList, setRenderList] = useState([]);
@@ -17,7 +18,7 @@ const Todo = () => {
     date: currentDate,
     time: currentTime,
   });
-
+  const [error, setError] = useState(false)
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -36,8 +37,10 @@ const Todo = () => {
     if (tempObj.title !== "" && isExixt === -1) {
       newRenderList.push(tempObj);
       setList((prev) => [...prev, tempObj]);
+      setError(false)
+    }else{
+      setError(true)
     }
-    // setList((prev) => [...prev, tempObj]);
     setRenderList(newRenderList);
     setFormData({
       title: "",
@@ -103,6 +106,7 @@ const Todo = () => {
               style={style}
               currentDate={currentDate}
               currentTime={currentTime}
+              error={error}
             />
           </Col>
           <Col md="6">
