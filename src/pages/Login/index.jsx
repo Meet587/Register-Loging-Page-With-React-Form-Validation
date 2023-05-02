@@ -34,7 +34,6 @@ const index = (props) => {
     e.preventDefault();
     let isvalid = true;
     let errors = {...validation};
-debugger
     let user = registerData.find((obj) => {
       return obj.email == loginData.email && obj.pass == loginData.pass;
     });
