@@ -7,7 +7,8 @@ import Card from "../stylecomponent/card";
 import Contact from "./Contact";
 import Password from "./Password";
 
-const index = () => {
+const index = ({ dispatch }) => {
+  
   const navigate = useNavigate();
   const [reData, setReData] = useState({
     fName: "",
@@ -155,7 +156,7 @@ const index = () => {
       stap === 2 ? submit() : setStap((prev) => prev + 1);
     }
   }
-
+console.log("main co")
   return (
     <div className={`${style.register_container}`}>
       <div className={style.reg_container1}></div>

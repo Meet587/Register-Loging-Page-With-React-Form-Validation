@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 import style from "../Register/register.module.scss";
 
 const Name = (props) => {
   const { validation, reData, handleChange, handleSubmit } = props;
   // console.log(validation);
+  // const inputFild = useRef()
+  // const inputFild1 = useRef("")
+  console.log('name');
   return (
     <>
       <div className="email fild">
         <FormGroup floating>
           <Input
+            // ref={inputFild}
             type="fName"
             id="fName"
             name="fName"

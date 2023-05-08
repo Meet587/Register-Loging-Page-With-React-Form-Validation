@@ -4,6 +4,7 @@ import style from "../Register/register.module.scss";
 
 const Contact = (props) => {
   const { reData, validation, handleChange, handleSubmit } = props;
+  console.log("contect")
   return (
     <>
       <>

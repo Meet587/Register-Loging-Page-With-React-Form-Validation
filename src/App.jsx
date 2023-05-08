@@ -11,7 +11,7 @@ import Index from "./pages/Login/index";
 import Register from "./pages/Register/Register";
 import R404 from "./pages/404";
 import Todo from "./pages/Todo List/Todo";
-import Dashbord from "./pages/Dasborad/Dasboard";
+import Dashbord  from "./pages/Dashbord/Dashbord";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
