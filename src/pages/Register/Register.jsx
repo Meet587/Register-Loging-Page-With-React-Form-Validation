@@ -41,7 +41,7 @@ const index = ({ dispatch }) => {
   const downStap = () => {
     setStap((prev) => prev - 1);
   };
-
+console.log("first")
   function handleChange(e) {
     let value = e.target.value;
     let name = e.target.name;
