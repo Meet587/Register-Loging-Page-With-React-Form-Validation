@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import {
   Button,
@@ -13,20 +13,21 @@ import {
 const Dashbord = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  let user = {};
+  const [user, setUser] = useState({});
   useEffect(() => {
     const registerData = JSON.parse(localStorage.getItem("Form_data"));
+    console.log(registerData);
     if (location.state !== null) {
-      user = registerData.find((e) => {
+      let getUser = registerData.find((e) => {
         return e.email === location.state.email;
       });
+      setUser(getUser);
     }
   }, []);
 
-  const logOutFun = () => {
+  const Todo = () => {
     navigate("/Todo-page");
   };
-  console.log(user);
   return (
     <div>
       <Card
@@ -37,14 +38,19 @@ const Dashbord = () => {
       >
         <CardHeader tag="h4">Welcom Mr. {user.fName}</CardHeader>
         <CardBody className="mb-5">
-          <CardTitle tag="h5">Special thanks to Karanbhai</CardTitle>
           <CardText className="card_txt">
             Now you can visite site and moke some stuff like A todo list
           </CardText>
         </CardBody>
-        <CardFooter>
-          <Button onClick={logOutFun}>make list</Button>
+        <CardFooter className="d-flex justify-content-between">
           <Button
+            className="btn btn-soft-secondary waves-effect waves-light btn btn-secondary"
+            onClick={Todo}
+          >
+            make list
+          </Button>
+          <Button
+            className="btn btn-soft-secondary waves-effect waves-light btn btn-secondary"
             onClick={(e) => {
               localStorage.setItem("isAuth", false);
               navigate("/login");

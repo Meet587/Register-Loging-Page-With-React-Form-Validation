@@ -8,7 +8,6 @@ import Contact from "./Contact";
 import Password from "./Password";
 
 const index = ({ dispatch }) => {
-  
   const navigate = useNavigate();
   const [reData, setReData] = useState({
     fName: "",
@@ -41,12 +40,10 @@ const index = ({ dispatch }) => {
   const downStap = () => {
     setStap((prev) => prev - 1);
   };
-console.log("first")
   function handleChange(e) {
     let value = e.target.value;
     let name = e.target.name;
-    let temObj = { ...reData, [name]: value };
-    setReData({ ...temObj, reData });
+    setReData((prev) => ({ ...prev, [name]: value }));
   }
 
   function validationFun() {
@@ -59,14 +56,14 @@ console.log("first")
         isvalid = false;
         errors.fName = "First name is required";
       } else {
-        errors.fName = "";
+        errors.fName = null;
       }
       //last Name validation
       if (!reData.lName.trim()) {
         isvalid = false;
         errors.lName = "Last name is required";
       } else {
-        errors.lName = "";
+        errors.lName = null;
       }
     }
 
@@ -82,7 +79,7 @@ console.log("first")
         isvalid = false;
         errors.email = "Please Enter a valid email address";
       } else {
-        errors.email = "";
+        errors.email = null;
       }
       const cNumCond = /^[6-9]\d{9}$/;
       if (!reData.cNum.trim()) {
@@ -92,7 +89,7 @@ console.log("first")
         isvalid = false;
         errors.cNum = "Please Enter a valid Contact Number";
       } else {
-        errors.cNum = "";
+        errors.cNum = null;
       }
     }
 
@@ -121,7 +118,7 @@ console.log("first")
         isvalid = false;
         errors.pass = "Password must contain at least a number";
       } else {
-        errors.pass = "";
+        errors.pass = null;
       }
       //matchPassword validation
       if (!reData.cPass) {
@@ -131,23 +128,18 @@ console.log("first")
         isvalid = false;
         errors.cPass = "Password does not match confirmation password";
       } else {
-        errors.cPass = "";
+        errors.cPass = null;
       }
     }
 
-    //  (()=>setValidation( prev =>{
-    //    return ({...prev, ...errors})
-    // }))()
-    setValidation(errors);
+    setValidation((prev) => ({ ...prev, ...errors }));
     return isvalid;
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     let newUserData = [...userData];
-    let tempObj = { ...reData };
     if (stap === 2) {
-      newUserData.push(tempObj);
+      newUserData.push(reData);
       setUserData(newUserData);
       localStorage.setItem("Form_data", JSON.stringify(newUserData));
     }
@@ -156,7 +148,6 @@ console.log("first")
       stap === 2 ? submit() : setStap((prev) => prev + 1);
     }
   }
-console.log("main co")
   return (
     <div className={`${style.register_container}`}>
       <div className={style.reg_container1}></div>

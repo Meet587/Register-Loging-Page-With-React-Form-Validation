@@ -19,7 +19,6 @@ const index = ({ isAuth, setIsAuth }) => {
     isExist: "",
   });
   const registerData = JSON.parse(localStorage.getItem("Form_data"));
-
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
     setLoginData((prev) => {

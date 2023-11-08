@@ -7,7 +7,6 @@ const Name = (props) => {
   // console.log(validation);
   // const inputFild = useRef()
   // const inputFild1 = useRef("")
-  console.log('name');
   return (
     <>
       <div className="email fild">
